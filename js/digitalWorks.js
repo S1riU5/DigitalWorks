@@ -1,31 +1,41 @@
-var elem = document.querySelector('#draggable');
-//var imagesSection = 50;
-//var namesSection = 50;
-var draggiePos;
+var dragH = document.querySelector('#draggable-h');
+var dragV = document.querySelector('#draggable-V');
+
+var draggiePos = 0;
 var draggerSize = 30;
-var draggie = new Draggabilly(elem, {
+var draggieV = new Draggabilly(dragV, {
+    axis : 'y',
+    containment: '.main'
+});
+
+var draggieH = new Draggabilly(dragH, {
     axis : 'x',
     containment: '.main'
 });
 
 
+
 $(document).ready(function() {
+    //loadImages();
     var ww = $(window).width();
     var pos = ($(window).width() / 2 - draggerSize/2) / ww * 100 ;
     console.log("Redy pos " +pos);
-    $(".draggie").css("left",pos+"%");
-  //  animateButlletOnReady();
+    $(".draggie-vertical").css("left",pos+"%");
+  //  initValue = getPercentage();
+   // animateBulletOnReady();
 });
 
 $(window).resize(function() {
-    console.log("#name width " + draggiePos);
+    //console.log("#name width " + draggiePos);
+
     var sectionPos = getPercentage();
+    console.log("resize width: " +  $(window).width() );
+    //console.log("percentage " + (initValue-sectionPos) );
     setSectionPos(100-sectionPos, sectionPos)
 });
 
 
-
-function animateButlletOnReady() {
+function animateBulletOnReady() {
     $(".draggie").animate({
         left: "80%"
     }, 1000).animate({
@@ -35,10 +45,8 @@ function animateButlletOnReady() {
     }, 700)
 }
 
-
 function getPercentage() {
-    var windowWidth = $(window).width();
-    return draggiePos /  windowWidth * 100;
+    return draggiePos /  $(window).width() * 100;
 }
 
 
@@ -63,10 +71,10 @@ function onDragMove( instance, event, pointer ) {
 }
 
 function setSectionPos(nameSec, imgSec) {
-    $("#names").css("-webkit-clip-path", "inset(0 " + nameSec+"% 0 0)");
-    $("#names").css("clip-path", "inset(0 " + nameSec+"% 0 0)");
-    $("#images").css("-webkit-clip-path", "inset(0 0 0 "  + imgSec+"%)");
-    $("#images").css("clip-path", "inset(0 0 0 "  + imgSec+"%)");
+    $("#names").css("-webkit-clip-path", "inset(0 " + nameSec +"% 0 0)");
+    $("#names").css("clip-path", "inset(0 " + nameSec +"% 0 0)");
+    $("#images").css("-webkit-clip-path", "inset(0 0 0 "  + imgSec +"%)");
+    $("#images").css("clip-path", "inset(0 0 0 "  + imgSec +"%)");
 }
 
 // bind event listener
