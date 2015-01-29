@@ -84,7 +84,7 @@ div#draggable {}
     position: absolute;
     bottom: 20px;
     right: 30px;
-    width: 80px;
+    width: 80px; /* 30x30px tile + 5*2px margin*/
     height: 80px;
 }
 
